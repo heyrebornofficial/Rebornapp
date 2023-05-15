@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>헤이리본</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/swiper.min.css?v=7">
+    <link rel="stylesheet" type="text/css" href="/assets/css/common.css?v=1684130559">
+        <link rel="stylesheet" type="text/css" href="/assets/css/common_old.css?v=1684130559">
+        <script type="text/javascript" src="/assets/js/jquery.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/swiper.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/popup.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common2.js?v=7"></script>
+        						
+    	        
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#go_mypage").on("click",function(){location.href="/member/mypage";});
+	$("#go_notice").on("click",function(){location.href="/member/noti";});
+	$("#go_search").on("click",function(){location.href="/search/index";});
+});
+</script>
+  <style>
+    .flag{position:absolute;right:10px;top:-7px;padding:5px 6px 2px;display:inline-block;background-color: #fff;font-size:1.2rem;line-height: 1;border-radius:3px;font-weight: 600;}
+    .flag.point{background-color:#F15E0D;color:#fff}
+    .hide{display:none !important;}
+  </style>
+    
+<div id="wrap">
+  <div class="wrap_inner main"><!-- main -->
+    <header>
+      <div class="header">
+        <h1 class="head_title hidden">헤이리본</h1>
+        <div class="btn_right">
+          <button type="button" id="go_search" class="btn sch white"></button>
+          <button type="button" id="go_notice" class="btn noti white"><span>0</span></button>
+          <button type="button" id="go_mypage" class="btn mypage white"></button>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="contents">
+        <div class="cont">
+          <!-- s:메인 -->
+          <div class="main_vis" style="background-image:url('/img/banner/main_banner.jpg');">
+            <div class="main_vis_inner">
+              <h2>
+                <span class="logo"><img src="/images/ico_logo_white.png?ver=2" alt="" /></span>
+                <span class="gsFontL">사진찍고 견적받자</span>
+                <span class="gsFontM">실시간 맞춤견적 <strong class="gsFontB">헤이리본</strong></span>
+              </h2>
+              <div class="form button">
+                <!-- hide 클래스로 숨김처리 -->
+                                <a href="/event/rebn01" class="btn active">견적 신청하고 5천 포인트 혜택 받기 Click!</a>
+              </div>
+            </div>
+          </div>
+          <div class="m_nav_area">
+            <ul class="m_nav_inner">
+              <li class="m_nav_01 current">
+                <a href="/event/index?order=s_cnt">
+                  <span class="ico"></span>
+                  <span>HOT</span>
+                </a>
+              </li>
+              <li class="m_nav_02">
+                <a href="/event/index">
+                  <span class="ico"></span>
+                  <span>NEW</span>
+                </a>
+              </li>
+              <li class="m_nav_03">
+                <a href="/apply">
+                  <span class="ico"></span>
+                  <span>모델지원</span>
+                </a>
+              </li>
+              <li class="m_nav_04">
+                <a href="/event/mall/offset/0/limit/20/target/cat/search/pointzone/type/">
+                  <span class="ico"></span>
+                  <span>혜택</span>
+                </a>
+              </li>
+              <li class="m_nav_05">
+                <a href="/main/post_list">
+                  <span class="ico"></span>
+                  <span>POST</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="main_cont">
+            <h3 class="title gsFontB">Recommended Post</h3>
+            <div class="post_list">
+              <div class="post_item">
+                <a href="/main/post_view/66">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F8d4dbaf91c516dc692939e68d6a060ee.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">어떤거 먼저 해야해?!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	성형에도 순서가 있다?                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>성형순서</span>
+                                            <span>수술</span>
+                                            <span>시술</span>
+                                          </span>
+                    <span>2023-05-08</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/65">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Fbc880b03b81895db87beb5f83f7ca461.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">NO!수술, ‘여기’를 줄여야 작아진다!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	얼굴이 작아지는 시술 Best3                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>반쪽얼굴</span>
+                                            <span>소멸</span>
+                                            <span>시술Best3</span>
+                                          </span>
+                    <span>2023-04-07</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/64">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F6827a8db7e9a7ccda37fe133089d487a.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">대세는 가꾸는 남자!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	남자들이 가장 많이 받는 시술TOP7                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>남자친구</span>
+                                            <span>시술</span>
+                                            <span>레이저리프팅</span>
+                                          </span>
+                    <span>2023-03-27</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/63">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F210bf11c714dc857a11f0db200287685.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">존재감 뿜뿜, 승모근</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	승모근 보톡스 맞아도 괜찮을까?                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>승모근</span>
+                                            <span>보톡스</span>
+                                            <span>부작용</span>
+                                          </span>
+                    <span>2023-03-16</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/62">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F42e9a9049aa949684a32961680c0b110.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">쫀쫀주사? 필러?</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	울트라콜 총 정리                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>쫀쫀주사</span>
+                                            <span>필러</span>
+                                            <span>스킨부스터</span>
+                                          </span>
+                    <span>2023-02-28</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/61">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Faf08105a6e515c6f2700b724927710ac.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">내가 코가 잘될 코인가?</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	잘 되는 코,안되는 코                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>코성형</span>
+                                            <span>잘되는코</span>
+                                            <span>절망금지</span>
+                                          </span>
+                    <span>2023-02-23</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/60">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Fbfae59e10d5959dc46ba704df0338789.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">코 상담 전 꼭 알고가자!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	용어와 질문                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>코성형</span>
+                                            <span>상담전</span>
+                                            <span>용어와질문</span>
+                                          </span>
+                    <span>2023-02-21</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/59">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Fca602c05b6abd81e376931180401a368.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">가장 효과 좋은 리프팅레이저</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	울쎄라 총 정리                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>리프팅레이저</span>
+                                            <span>울쎄라</span>
+                                            <span>시술</span>
+                                          </span>
+                    <span>2023-02-09</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/58">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Ff2c35e967b7be956c3109bb89fc2e22e.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">쉿!비밀이야!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	티 안나게 예뻐지는 시술 Best5                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>필러</span>
+                                            <span>리프팅</span>
+                                            <span>물광필</span>
+                                          </span>
+                    <span>2023-02-03</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/56">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F400a0169610349bd276228e1e980aa20.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">코 수술 후 '이걸' 하면 코가 터진다?! </span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	코수술 후 사후관리                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>코성형</span>
+                                            <span>사후관리</span>
+                                            <span>재채기</span>
+                                          </span>
+                    <span>2023-01-31</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/53">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F2e305f428fb5f3f009f6202aecb13cb2.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">이 주사 하나로 해결!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	윤곽주사 총 정리                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>얼굴살</span>
+                                            <span>다이어트</span>
+                                            <span>윤곽주사</span>
+                                          </span>
+                    <span>2023-01-27</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/52">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F1346db3895e0f7e806920e999ca94710.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">피부 건강과 탄력을 한번에!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	건조한 피부, 리제닌하자!                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>스킨부스터</span>
+                                            <span>리제닌</span>
+                                            <span>펩타이드</span>
+                                          </span>
+                    <span>2023-01-25</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/49">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Fe578923a2dd90ff7c199a3c891be33f7.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">이것만큼은 지켜주자!</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	가슴 성형 후 주의사항                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>가슴성형</span>
+                                            <span>주차별</span>
+                                            <span>주의사항</span>
+                                          </span>
+                    <span>2023-01-30</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/44">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F1c8be7f4b4774b298845b76b6351522a.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">누구에게나 찾아오는 부작용</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	가슴성형 부작용편                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>가슴성형</span>
+                                            <span>부작용</span>
+                                            <span>보형물</span>
+                                          </span>
+                    <span>2023-01-19</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/43">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F1b920dc9df7e215e31f11e8e29f7370f.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">보형물 vs 지방이식</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	가슴성형을 고민하고 있다면?                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>가슴성형</span>
+                                            <span>보형물</span>
+                                            <span>지방이식</span>
+                                          </span>
+                    <span>2023-01-11</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/42">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2Ff34c182951e4a05a0daee9a996af1fde.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">윤곽3종?그게 뭐야?</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	윤곽3종 총 정리                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>안면윤곽</span>
+                                            <span>윤곽3종</span>
+                                            <span>사각턱</span>
+                                          </span>
+                    <span>2023-01-06</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/41">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F0da9332240d93c459ad611a6e7489992.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">야 너도 효도 할 수 있어</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	효도 성형 남바완, 눈썹하거상술                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>눈썹하거상술</span>
+                                            <span>효도성형</span>
+                                          </span>
+                    <span>2023-01-04</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/40">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F87dfff2d4a6d3a1a7760ae1aafe4c77e.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">보조개 수술</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	총 정리                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>보조개</span>
+                                            <span>보조개스팟</span>
+                                            <span>주의사항</span>
+                                          </span>
+                    <span>2023-01-03</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/39">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F3866b7172a7a5722a5baaba488f666b7.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">레이저리프팅 후 관리법</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	이 관리법 모름면 돈낭비                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>레이저리프팅</span>
+                                            <span>관리법</span>
+                                            <span>시술</span>
+                                          </span>
+                    <span>2022-12-30</span>
+                  </div>
+                </a>
+              </div>
+              <div class="post_item">
+                <a href="/main/post_view/38">
+                  <div class="box">
+                                      <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/200/200/?src=%2Fimg%2Fpost%2F208453c7887f9b1097e313658c817264.jpg')"></span>
+                    </div>
+                                        <div class="detail">
+                      <span class="tt">생애 첫 눈 성형</span>
+                      <span class="st" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;height: 20px;">
+                      	성공하는 방법 알려줄게!                      </span>
+                    </div>
+                  </div>
+                  <div class="info">
+                    <span class="tag">
+                                          <span>쌍수</span>
+                                            <span>상담꿀팁</span>
+                                            <span>수술법</span>
+                                          </span>
+                    <span>2022-12-22</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- e:메인 -->
+        </div>
+      </div>
+    </section>
+    
+
+
+
+    <footer>
+      <div class="footer">
+        <ul>
+          <li class="footer_nav_01 current">
+            <a href="/main">
+              <span class="ico"></span>
+              <span>HOME</span>
+            </a>
+          </li>
+          <li class="footer_nav_02">
+            <a href="/clinic">
+              <span class="ico"></span>
+              <span>DOCTOR</span>
+            </a>
+          </li>
+          <li class="footer_nav_03">
+            <a href="/event">
+              <span class="ico"></span>
+              <span>EVENT</span>
+            </a>
+          </li>
+          <li class="footer_nav_04">
+            <a href="/board">
+              <span class="ico"></span>
+              <span>TALK</span>
+            </a>
+          </li>
+          <li class="footer_nav_05">
+            <a href="/review">
+              <span class="ico"></span>
+              <span>REVIEW</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+<script type="text/javascript">
+  function save_keep(cat, no, type)
+  {
+    var uid = 'guest';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_keep_proc",
+      data: {uid:uid,cat:cat,no:no,type:type}, // a , d
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        if(result.memo == "보관함에서 제거 하였습니다."){
+          $("#save_btn_"+no).removeClass("active");
+        }else{
+            $("#save_btn_"+no).addClass("active");
+        }
+      },
+      error : function(result){
+        //alert('Error! - USK');
+      }
+    });    
+  }
+
+  function save_good(cat, no, type)
+  {
+
+    var cnt =$('#v_good_'+no).text();
+
+    var uid = 'guest';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_good_proc",
+      data: {uid:uid,cat:cat,no:no,type:type},
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        /*
+        if(type == "a"){
+          num = parseInt(cnt)+1;
+          $('#v_good_'+no).text(num);
+        } else {
+          num = parseInt(cnt)-1;
+          $('#v_good_'+no).text(num);
+        }
+        */
+      },
+      error : function(result){
+        alert('Error! - UBG');
+      }
+    });
+  }  
+
+   function reply_police(mid)
+   {
+        popupModule.popupShow('.reportLayer_reply');
+        $("#police_id").val(mid);
+   }
+
+   function go_login_page()
+   {
+		location.href="/member/login";
+   }
+
+   function go_auth()
+   {
+        location.href="/member/user_auth_page";
+        return false;
+   }
+</script>
+<script>
+    document.addEventListener('scroll', function() {
+        var currentScrollValue = document.documentElement.scrollTop;
+        console.log('currentScrollValue is ' + currentScrollValue);
+    });
+</script>
+</div>
+
+<div class='error' style='display:none'><span id="m_memo"></span></div>
+<style type="text/css">
+.error {
+    width: 250px;height: 20px;height:auto;position: fixed;left: 50%;
+    margin-left:-125px;bottom: 100px;z-index: 9999;background-color: #383838;
+    color: #F0F0F0;font-family: Calibri;font-size: 15px;padding: 10px;
+    text-align:center;border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-723C58EHYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-723C58EHYQ');
+</script>
+
+</body>
+</html>
