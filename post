@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>헤이리본 &gt; POST</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/swiper.min.css?v=7">
+    <link rel="stylesheet" type="text/css" href="/assets/css/common.css?v=1684130812">
+        <link rel="stylesheet" type="text/css" href="/assets/css/common_old.css?v=1684130812">
+        <script type="text/javascript" src="/assets/js/jquery.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/swiper.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/popup.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common2.js?v=7"></script>
+        							
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+	<script type="text/javascript">
+		var userId = "push_100";
+		$(document).ready(function(){
+			console.log("It works!!");
+			window.ReactNativeWebView?.postMessage(
+				JSON.stringify( {type: 'userId', data: userId} )
+			);
+  		});
+	</script>
+	
+					
+    	        
+</head>
+<body>
+
+<style>
+  /* height 100% 해제 */
+  body, html{height:auto;}
+  #wrap{height:auto;}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#go_mypage").on("click",function(){location.href="/member/mypage";});
+	$("#go_notice").on("click",function(){location.href="/member/noti";});
+	$("#go_search").on("click",function(){location.href="/search/index";});
+	
+});
+</script>
+<div id="wrap">
+  <div class="wrap_inner">
+    <header>
+      <div class="header">
+        <h1 class="head_title hidden">헤이리본 POST</h1>
+        <div class="btn_sch_set2">
+          <!-- s: select -->
+          <div class="sub_title">
+            <h2 class="gsFontM">POST</h2>
+          </div>
+          <!-- e: select -->
+          <button type="button" id="go_search" class="btn sch"></button>
+          <button type="button" id="go_notice" class="btn noti"><span>0</span></button>
+          <button type="button" id="go_mypage" class="btn mypage"></button>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="contents btm_nav">
+        <div class="cont pD0">
+          <!-- s:MODEL -->
+          <!-- s:전체보기/최신순 -->
+          <div class="filter_select">
+            <div class="select_basic" style="width:50%">
+              <div class="select_box">
+                <label for="">전체</label>
+                <select id="" class="select">
+                  <option selected="selected">전체</option>
+                  <option>전체2</option>
+                </select>
+              </div>
+            </div>
+            <div class="select_basic" style="width:50%">
+              <div class="select_box">
+                <label for="">모두보기</label>
+                <select id="" class="select">
+                  <option selected="selected">모두보기1</option>
+                  <option>모두보기2</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- e:전체보기/최신순 -->
+          <div class="inner postList">
+            <div class="list_common">
+              <!-- s: post list -->
+              <div class="list_area">
+                <div class="list_column">
+                  <!-- s:리스트 반복 -->
+                                    <a href="/main/post_view/66" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F8d4dbaf91c516dc692939e68d6a060ee.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">어떤거 먼저 해야해?!</span>
+                      <span class="tag">
+                                                                          <span>성형순서</span>
+                                                    <span>수술</span>
+                                                    <span>시술</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/65" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Fbc880b03b81895db87beb5f83f7ca461.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">NO!수술, ‘여기’를 줄여야 작아진다!</span>
+                      <span class="tag">
+                                                                          <span>반쪽얼굴</span>
+                                                    <span>소멸</span>
+                                                    <span>시술Best3</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/64" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F6827a8db7e9a7ccda37fe133089d487a.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">대세는 가꾸는 남자!</span>
+                      <span class="tag">
+                                                                          <span>남자친구</span>
+                                                    <span>시술</span>
+                                                    <span>레이저리프팅</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/63" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F210bf11c714dc857a11f0db200287685.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">존재감 뿜뿜, 승모근</span>
+                      <span class="tag">
+                                                                          <span>승모근</span>
+                                                    <span>보톡스</span>
+                                                    <span>부작용</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/62" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F42e9a9049aa949684a32961680c0b110.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">쫀쫀주사? 필러?</span>
+                      <span class="tag">
+                                                                          <span>쫀쫀주사</span>
+                                                    <span>필러</span>
+                                                    <span>스킨부스터</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/61" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Faf08105a6e515c6f2700b724927710ac.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">내가 코가 잘될 코인가?</span>
+                      <span class="tag">
+                                                                          <span>코성형</span>
+                                                    <span>잘되는코</span>
+                                                    <span>절망금지</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/60" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Fbfae59e10d5959dc46ba704df0338789.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">코 상담 전 꼭 알고가자!</span>
+                      <span class="tag">
+                                                                          <span>코성형</span>
+                                                    <span>상담전</span>
+                                                    <span>용어와질문</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/59" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Fca602c05b6abd81e376931180401a368.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">가장 효과 좋은 리프팅레이저</span>
+                      <span class="tag">
+                                                                          <span>리프팅레이저</span>
+                                                    <span>울쎄라</span>
+                                                    <span>시술</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/58" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Ff2c35e967b7be956c3109bb89fc2e22e.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">쉿!비밀이야!</span>
+                      <span class="tag">
+                                                                          <span>필러</span>
+                                                    <span>리프팅</span>
+                                                    <span>물광필</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/56" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F400a0169610349bd276228e1e980aa20.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">코 수술 후 '이걸' 하면 코가 터진다?! </span>
+                      <span class="tag">
+                                                                          <span>코성형</span>
+                                                    <span>사후관리</span>
+                                                    <span>재채기</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/53" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F2e305f428fb5f3f009f6202aecb13cb2.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">이 주사 하나로 해결!</span>
+                      <span class="tag">
+                                                                          <span>얼굴살</span>
+                                                    <span>다이어트</span>
+                                                    <span>윤곽주사</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/52" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F1346db3895e0f7e806920e999ca94710.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">피부 건강과 탄력을 한번에!</span>
+                      <span class="tag">
+                                                                          <span>스킨부스터</span>
+                                                    <span>리제닌</span>
+                                                    <span>펩타이드</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/49" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Fe578923a2dd90ff7c199a3c891be33f7.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">이것만큼은 지켜주자!</span>
+                      <span class="tag">
+                                                                          <span>가슴성형</span>
+                                                    <span>주차별</span>
+                                                    <span>주의사항</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/44" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F1c8be7f4b4774b298845b76b6351522a.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">누구에게나 찾아오는 부작용</span>
+                      <span class="tag">
+                                                                          <span>가슴성형</span>
+                                                    <span>부작용</span>
+                                                    <span>보형물</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/43" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2F1b920dc9df7e215e31f11e8e29f7370f.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">보형물 vs 지방이식</span>
+                      <span class="tag">
+                                                                          <span>가슴성형</span>
+                                                    <span>보형물</span>
+                                                    <span>지방이식</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <a href="/main/post_view/42" class="list_item">
+                    <div class="thumb_area">
+                      <span class="thumb" style="background-image:url('/timg/thumb/400/400/?src=%2Fimg%2Fpost%2Ff34c182951e4a05a0daee9a996af1fde.jpg')"></span>
+                    </div>
+                    <div class="detail">
+                      <span class="tt">윤곽3종?그게 뭐야?</span>
+                      <span class="tag">
+                                                                          <span>안면윤곽</span>
+                                                    <span>윤곽3종</span>
+                                                    <span>사각턱</span>
+                                                </span>
+                    </div>
+                  </a>
+                                    <!-- e:리스트 반복 -->
+                </div>
+              </div>
+              <!-- e: post list -->
+            </div>
+          </div>
+         
+          <!-- e:MODEL -->
+        </div>
+      </div>
+    </section>
+
+<script>
+  $(function () {
+    // 슬라이드
+    var swiper = new Swiper(".shop_slide .swiper-container", {
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+	
+  });
+
+  var loading = false;    //중복실행여부 확인 변수
+  var page = 1;   //불러올 페이지
+
+  /*nextpageload function*/
+  function next_load()
+  {
+        // list up load
+  	  page = page+1;
+  	  $("#page").val(page);
+  	  
+        $.ajax({
+            url: "/main/post_list",
+            data: {page:page},
+            method: "POST",
+            dataType: "html"
+        })
+        // HTTP
+        .done(function(data) {
+  			$(".list_column").append(data);
+  			loading = false;    //실행 가능 상태로 변경          
+        })
+        // HTTP
+        .fail(function(xhr, status, errorThrown) {
+            $("#text").html("Error!<br>")
+            .append("err: " + errorThrown + "<br>")
+            .append("stat: " + status);
+        })
+        .always(function(xhr, status) {
+            $("#text").html("요청이 완료되었습니다!");
+        });  
+  }
+
+
+
+  $(window).scroll(function(){
+      if($(window).scrollTop()+200>=$(document).height() - $(window).height())
+      {
+          if(!loading)    //실행 가능 상태라면?
+          {
+              loading = true; //실행 불가능 상태로 변경
+              next_load(); 
+          }
+          else            //실행 불가능 상태라면?
+          {
+              //alert('다음페이지를 로딩중입니다.');  
+          }
+      }
+  });
+</script>
+
+    <footer>
+      <div class="footer">
+        <ul>
+          <li class="footer_nav_01 current">
+            <a href="/main">
+              <span class="ico"></span>
+              <span>HOME</span>
+            </a>
+          </li>
+          <li class="footer_nav_02">
+            <a href="/clinic">
+              <span class="ico"></span>
+              <span>DOCTOR</span>
+            </a>
+          </li>
+          <li class="footer_nav_03">
+            <a href="/event">
+              <span class="ico"></span>
+              <span>EVENT</span>
+            </a>
+          </li>
+          <li class="footer_nav_04">
+            <a href="/board">
+              <span class="ico"></span>
+              <span>TALK</span>
+            </a>
+          </li>
+          <li class="footer_nav_05">
+            <a href="/review">
+              <span class="ico"></span>
+              <span>REVIEW</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+<script type="text/javascript">
+  function save_keep(cat, no, type)
+  {
+    var uid = 'woobin417@naver.com';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_keep_proc",
+      data: {uid:uid,cat:cat,no:no,type:type}, // a , d
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        if(result.memo == "보관함에서 제거 하였습니다."){
+          $("#save_btn_"+no).removeClass("active");
+        }else{
+            $("#save_btn_"+no).addClass("active");
+        }
+      },
+      error : function(result){
+        //alert('Error! - USK');
+      }
+    });    
+  }
+
+  function save_good(cat, no, type)
+  {
+
+    var cnt =$('#v_good_'+no).text();
+
+    var uid = 'woobin417@naver.com';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_good_proc",
+      data: {uid:uid,cat:cat,no:no,type:type},
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        /*
+        if(type == "a"){
+          num = parseInt(cnt)+1;
+          $('#v_good_'+no).text(num);
+        } else {
+          num = parseInt(cnt)-1;
+          $('#v_good_'+no).text(num);
+        }
+        */
+      },
+      error : function(result){
+        alert('Error! - UBG');
+      }
+    });
+  }  
+
+   function reply_police(mid)
+   {
+        popupModule.popupShow('.reportLayer_reply');
+        $("#police_id").val(mid);
+   }
+
+   function go_login_page()
+   {
+		location.href="/member/login";
+   }
+
+   function go_auth()
+   {
+        location.href="/member/user_auth_page";
+        return false;
+   }
+</script>
+<script>
+    document.addEventListener('scroll', function() {
+        var currentScrollValue = document.documentElement.scrollTop;
+        console.log('currentScrollValue is ' + currentScrollValue);
+    });
+</script>
+</div>
+
+<div class='error' style='display:none'><span id="m_memo"></span></div>
+<style type="text/css">
+.error {
+    width: 250px;height: 20px;height:auto;position: fixed;left: 50%;
+    margin-left:-125px;bottom: 100px;z-index: 9999;background-color: #383838;
+    color: #F0F0F0;font-family: Calibri;font-size: 15px;padding: 10px;
+    text-align:center;border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-723C58EHYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-723C58EHYQ');
+</script>
+
+</body>
+</html>
