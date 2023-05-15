@@ -1,0 +1,1826 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>헤이리본 &gt; 병원</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/swiper.min.css?v=7">
+    <link rel="stylesheet" type="text/css" href="/assets/css/common.css?v=1684130596">
+        <link rel="stylesheet" type="text/css" href="/assets/css/common_old.css?v=1684130596">
+        <script type="text/javascript" src="/assets/js/jquery.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/swiper.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/popup.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common2.js?v=7"></script>
+        						
+    	        
+</head>
+<body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#go_mypage").on("click",function(){location.href="/member/mypage";});
+	$("#go_notice").on("click",function(){location.href="/member/noti";});
+	$("#go_search").on("click",function(){location.href="/search/index";});
+
+	// 의사페이지로 보내기
+	$("#change_cli_doc").on("change",function(){location.href="/doctor/index";});
+
+	$("#c1search").on("change",function(){
+
+		var checked = $('#selectClinic').is(':checked');
+		var skin_doctor = "y";
+		if(!checked){skin_doctor = "n";}
+
+	    search_val = "";
+	    checked = $("input:checkbox[name='area']");
+	    $.each(checked, function(index, item){
+	     	if($(checked[index]).is(":checked")){
+	        	console.log(index);
+	        	search_val = $(checked[index]).val();
+	    	};
+	    });
+	    //console.log(this.value);
+	    //console.log(search_val);
+	    c1search = this.value;
+		location.href="/clinic/index/target/cli_subway/search/"+search_val+'/skin/'+skin_doctor+"?c1search="+c1search;
+	});
+});
+
+function search_doctor(obj)
+{
+	var checked = $('#selectClinic').is(':checked');
+	var skin_doctor = "y";
+	if(!checked){skin_doctor = "n";}
+
+	added_val = "";
+	c1search = $("#c1search").val();
+	if(c1search){added_val = "?c1search="+c1search;}
+	
+	location.href="/clinic/index/target/cli_subway/search/"+obj.value+'/skin/'+skin_doctor+added_val;
+}
+
+function search_skin(skin_val){
+    checked = $("input:checkbox[name='area']");
+    search_val = "";
+    $.each(checked, function(index, item){
+     	if($(checked[index]).is(":checked")){
+        	console.log(index);
+        	search_val = $(checked[index]).val();
+    	};
+    });
+
+	added_val = "";
+	c1search = $("#c1search").val();
+	if(c1search){added_val = "?c1search="+c1search;}
+
+
+	var checked2 = $('#selectClinic').is(':checked');
+	
+	location.href="/clinic/index/target/cli_subway/search/"+search_val+'/skin/'+skin_val+added_val;
+}
+</script>
+
+<div id="wrap">
+  <div class="wrap_inner">
+    <header>
+      <div class="header">
+        <h1 class="head_title hidden">헤이리본</h1>
+        <div class="btn_sch_set2">
+          <!-- s: select -->
+          <div class="select_area">
+            <div class="form select">
+              <div class="select_box">
+                <label for="">병원</label>
+                <select id="change_cli_doc" class="select">
+                  <option value="clinic" selected="selected">병원</option>
+                  <option value="doctor">의사</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- e: select -->
+          <button type="button" id="go_search" class="btn sch"></button>
+          <button type="button" id="go_notice" class="btn noti"><span>0</span></button>
+          <button type="button" id="go_mypage" class="btn mypage"></button>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="contents btm_nav">
+        <div class="cont pD0">
+          <!-- s:병원찾기 -->
+          <div class="form_area">
+            <div class="gray_box">
+              <div class="form">
+                <div class="form_title hidden"><h3>지역</h3></div>
+                <div class="check_form radioStyle">
+                  <ul class="check_area">
+                    <li class="input_check">
+                      <input type="checkbox" id="country" value="0" checked="true" onclick="search_doctor(this);" name="area">
+                      <label for="country">전국</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="gangnam" value="강남역"  onclick="search_doctor(this);" name="area">
+                      <label for="gangnam">강남역</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="sinsa" value="신사역"  onclick="search_doctor(this);" name="area">
+                      <label for="sinsa">신사역</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="apgujeong" value="압구정역"  onclick="search_doctor(this);" name="area">
+                      <label for="apgujeong">압구정역</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="seoulEtc" value="서울기타"  onclick="search_doctor(this);" name="area">
+                      <label for="seoulEtc">서울기타</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="incheon" value="인천경기"  onclick="search_doctor(this);" name="area">
+                      <label for="incheon">인천/경기</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="daejeon" value="대전충청"  onclick="search_doctor(this);" name="area">
+                      <label for="daejeon">대전/충청</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="busan" value="부산"  onclick="search_doctor(this);" name="area">
+                      <label for="busan">부산</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="ulsan" value="울산경남"  onclick="search_doctor(this);" name="area">
+                      <label for="ulsan">울산/경남</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="daegu" value="대구경북"  onclick="search_doctor(this);" name="area">
+                      <label for="daegu">대구/경북</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="gwangju" value="광주전라"  onclick="search_doctor(this);" name="area">
+                      <label for="gwangju">광주/전라</label>
+                    </li>
+                    <li class="input_check">
+                      <input type="checkbox" id="areaEtc" value="기타"  onclick="search_doctor(this);" name="area">
+                      <label for="areaEtc">기타</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="form inner">
+              <div class="check_form mT20">
+                <ul class="check_area">
+                  <li class="input_check type1" style="float:left;padding-right:10px;">
+                    <input type="checkbox" id="selectClinicN" onclick="search_skin('n');" checked='true'  name="selectClinicN" style="left:auto;top:auto;" />
+                    <label for="selectClinicN" onclick="search_skin('n');">성형외과</label>
+                  </li>
+                  <li class="input_check type1" style="float:left;padding-right:10px;">
+                    <input type="checkbox" id="selectClinic" onclick="search_skin('y');"   name="selectClinic" style="left:auto;top:auto;" />
+                    <label for="selectClinic" onclick="search_skin('y');">피부과</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="select_basic" style="position: absolute;display: inline;float: right;width:100px;right: 0px;">
+                <div class="select_box" style="top:-6px;height: 25px;line-height: 25px;">
+                  <label for="" style="padding-top:9px;color:#6a6a6a;font-family:'Apple SD Gothic Neo','NanumBarunGothic','나눔바른고딕','Malgun Gothic','맑은 고딕','dotum',sans-serif;font-size:1.5rem;line-height:20px;">
+                  부위별                  </label>
+                  <select name="c1search" id="c1search" class="select" style="height:25px;">
+                      <option  value="전체">전체</option>
+                      <option  value="눈">눈</option>
+                      <option  value="코">코</option>
+                      <option  value="쁘띠">쁘띠</option>
+                      <option  value="리프팅">리프팅</option>
+                      <option  value="지방흡입">지방흡입</option>
+                      <option  value="안면윤곽">안면윤곽</option>
+                      <option  value="가슴">가슴</option>
+                      <option  value="지방이식">지방이식</option>
+                      <option  value="피부">피부</option>
+                      <option  value="모발">모발</option>
+                      <option  value="남자성형">남자성형</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- s:병원찾기리스트 -->
+          <div class="list_area inner findClinic">
+            <!-- s:리스트반복 -->
+            
+            
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658719809" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_838036_304_idelps.JPG')" onclick="move_cli('20221658719809');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아이델성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_55" class="list_save size24 listSave" onCLick="save_keep('cli', '55', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658719649" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_301953_932_bb.jpg')" onclick="move_cli('20221658719649');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">루호성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_54" class="list_save size24 listSave" onCLick="save_keep('cli', '54', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658217241" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_783299_950_병원대표이미지_헤이리본.jpg')" onclick="move_cli('20221658217241');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">루비성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_53" class="list_save size24 listSave active" onCLick="save_keep('cli', '53', 'd');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658217132" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_529189_725_KakaoTalk_20220803_150626038.jpg')" onclick="move_cli('20221658217132');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">리더스성형외과의원<em>대구경북</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_52" class="list_save size24 listSave" onCLick="save_keep('cli', '52', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658217021" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_273778_688_헤이리본_원장님단체수정.jpg')" onclick="move_cli('20221658217021');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">하늘성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_51" class="list_save size24 listSave" onCLick="save_keep('cli', '51', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658216842" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_514399_236_atopps.JPG')" onclick="move_cli('20221658216842');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">에이탑성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_49" class="list_save size24 listSave" onCLick="save_keep('cli', '49', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658216747" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_392794_194_jjps.JPG')" onclick="move_cli('20221658216747');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">제이제이성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_48" class="list_save size24 listSave" onCLick="save_keep('cli', '48', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658216474" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_738395_237_헤이리본.jpg')" onclick="move_cli('20221658216474');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아이코닉성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_45" class="list_save size24 listSave" onCLick="save_keep('cli', '45', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658215620" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_86211_44_1611558845440_ea0787aefc694e3cadb52b8645a2e84b.jpg')" onclick="move_cli('20221658215620');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">온리프성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_42" class="list_save size24 listSave" onCLick="save_keep('cli', '42', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658214965" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_223777_120_k.jpg')" onclick="move_cli('20221658214965');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">볼륨성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>가슴</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_38" class="list_save size24 listSave" onCLick="save_keep('cli', '38', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658214843" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_413922_88_KakaoTalk_20220729_093831876.jpg')" onclick="move_cli('20221658214843');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">러블리안성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_37" class="list_save size24 listSave" onCLick="save_keep('cli', '37', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658214728" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_698516_899_7d92c8f6eca64b2098d20f1c0408727e.jpg')" onclick="move_cli('20221658214728');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">노트성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_36" class="list_save size24 listSave" onCLick="save_keep('cli', '36', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658214606" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_520251_713_62DDDA2F-7C34-4BBB-A4DF-5B3B1722B05C.jpeg')" onclick="move_cli('20221658214606');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">연세탑성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_35" class="list_save size24 listSave" onCLick="save_keep('cli', '35', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658213083" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_451256_66_KakaoTalk_20220527_123436854_04 복사.jpg')" onclick="move_cli('20221658213083');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">리스펙성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>모발이식제모</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_32" class="list_save size24 listSave active" onCLick="save_keep('cli', '32', 'd');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658212968" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_558382_195_20210810_142731.png')" onclick="move_cli('20221658212968');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">코원성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_31" class="list_save size24 listSave" onCLick="save_keep('cli', '31', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658212350" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_627080_945_marble_760.jpg')" onclick="move_cli('20221658212350');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">마블성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>리프팅</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_28" class="list_save size24 listSave" onCLick="save_keep('cli', '28', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658212025" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_90965_431_병원베너.jpg')" onclick="move_cli('20221658212025');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">프라이빗성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_27" class="list_save size24 listSave active" onCLick="save_keep('cli', '27', 'd');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658210783" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_802564_629_etc_1639444008.jpg')" onclick="move_cli('20221658210783');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">탑페이스성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_24" class="list_save size24 listSave" onCLick="save_keep('cli', '24', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658210271" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_340783_735_병원배너-내일 더 예뻐지는.jpg')" onclick="move_cli('20221658210271');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">더웨이성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_22" class="list_save size24 listSave" onCLick="save_keep('cli', '22', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658210163" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_904658_396_dawoomps.JPG')" onclick="move_cli('20221658210163');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">다움성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_21" class="list_save size24 listSave" onCLick="save_keep('cli', '21', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658210019" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_75425_835_etc_1651210281.jpg')" onclick="move_cli('20221658210019');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">원진성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>모발이식제모</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_20" class="list_save size24 listSave" onCLick="save_keep('cli', '20', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658208701" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_943561_707_hersheps.JPG')" onclick="move_cli('20221658208701');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">허쉬성형외과의원<em>서울기타</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_18" class="list_save size24 listSave" onCLick="save_keep('cli', '18', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658208509" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_472709_382_1.jpg')" onclick="move_cli('20221658208509');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">강남삼성성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>모발이식제모</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_17" class="list_save size24 listSave" onCLick="save_keep('cli', '17', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658208150" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_704912_809_헤이리본 메인이미지.jpg')" onclick="move_cli('20221658208150');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">티티성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_15" class="list_save size24 listSave" onCLick="save_keep('cli', '15', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658207867" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_478078_31_ysgyeolps.JPG')" onclick="move_cli('20221658207867');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">연세결성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_14" class="list_save size24 listSave" onCLick="save_keep('cli', '14', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658207674" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_116724_239_Untitled-42.jpg')" onclick="move_cli('20221658207674');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">클래시성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_13" class="list_save size24 listSave" onCLick="save_keep('cli', '13', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658205962" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_168063_115_excellentps.JPG')" onclick="move_cli('20221658205962');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">훌륭성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>지방이식</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_10" class="list_save size24 listSave" onCLick="save_keep('cli', '10', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658205777" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_804323_754_KakaoTalk_20220803_174639933.jpg')" onclick="move_cli('20221658205777');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">마노성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_9" class="list_save size24 listSave" onCLick="save_keep('cli', '9', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658205384" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_651929_433_main.jpg')" onclick="move_cli('20221658205384');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아너스티성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>리프팅</span>
+                                        <span>피부</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_7" class="list_save size24 listSave" onCLick="save_keep('cli', '7', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658204960" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_660447_255_ggnps.JPG')" onclick="move_cli('20221658204960');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">꿈꾸는성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방이식</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_6" class="list_save size24 listSave" onCLick="save_keep('cli', '6', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221675731765" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_348941_126_병원 대표 이미지.jpg')" onclick="move_cli('20221675731765');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">클로엔성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_83" class="list_save size24 listSave" onCLick="save_keep('cli', '83', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221675397707" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221675397707');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">타미성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_82" class="list_save size24 listSave" onCLick="save_keep('cli', '82', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221673418250" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_35203_348_760_490_02.jpg')" onclick="move_cli('20221673418250');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아크성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_81" class="list_save size24 listSave" onCLick="save_keep('cli', '81', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221672362780" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221672362780');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">네오유성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_80" class="list_save size24 listSave" onCLick="save_keep('cli', '80', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221671671716" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_712706_181_thebody1.png')" onclick="move_cli('20221671671716');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">BS더바디성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_79" class="list_save size24 listSave" onCLick="save_keep('cli', '79', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221669082048" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_482000_49_0D9A8710.jpg')" onclick="move_cli('20221669082048');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">파인드피부과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_77" class="list_save size24 listSave" onCLick="save_keep('cli', '77', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221667783719" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221667783719');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">광주성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_75" class="list_save size24 listSave" onCLick="save_keep('cli', '75', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221665968012" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_710478_311_로비.png')" onclick="move_cli('20221665968012');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">온도성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_74" class="list_save size24 listSave" onCLick="save_keep('cli', '74', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221664955864" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_618463_208_original.jpg')" onclick="move_cli('20221664955864');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">더페이스성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_73" class="list_save size24 listSave" onCLick="save_keep('cli', '73', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221664955594" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_244491_201_main(760).jpg')" onclick="move_cli('20221664955594');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">제이스타성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_72" class="list_save size24 listSave" onCLick="save_keep('cli', '72', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221664863228" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_3161_915_jeiops.JPG')" onclick="move_cli('20221664863228');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">제이오성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_71" class="list_save size24 listSave" onCLick="save_keep('cli', '71', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221664852869" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_224979_154_오두종성형외과-로고.jpg')" onclick="move_cli('20221664852869');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">오두종성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>모발이식제모</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_70" class="list_save size24 listSave" onCLick="save_keep('cli', '70', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221664852743" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_367712_414_KakaoTalk_20221004_132745626.jpg')" onclick="move_cli('20221664852743');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">뉴캐슬성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_69" class="list_save size24 listSave" onCLick="save_keep('cli', '69', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221664852561" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_491723_576_뉴라인성형외과-성형어플배너.jpg')" onclick="move_cli('20221664852561');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">뉴라인성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_68" class="list_save size24 listSave" onCLick="save_keep('cli', '68', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221663308149" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_227014_905_1524185926652_dcade4040a4548c2aa1faa84e45d98ec.jpg')" onclick="move_cli('20221663308149');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">압구정서울성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_67" class="list_save size24 listSave" onCLick="save_keep('cli', '67', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221663289665" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221663289665');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">투비성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_66" class="list_save size24 listSave" onCLick="save_keep('cli', '66', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221662427651" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_331362_155_대표사진.jpg')" onclick="move_cli('20221662427651');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">디자인성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_65" class="list_save size24 listSave" onCLick="save_keep('cli', '65', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221661747978" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_847874_984_ilacps.JPG')" onclick="move_cli('20221661747978');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아일락성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_64" class="list_save size24 listSave" onCLick="save_keep('cli', '64', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221661417424" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_60402_511_헤이리본2.jpg')" onclick="move_cli('20221661417424');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">로이성형외과의원<em>신사역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_63" class="list_save size24 listSave" onCLick="save_keep('cli', '63', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221661156990" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_960432_199_최선.jpg')" onclick="move_cli('20221661156990');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">우리성형외과의원<em>서울기타</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>안면윤곽양악</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_62" class="list_save size24 listSave" onCLick="save_keep('cli', '62', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221660890434" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_27558_795_KakaoTalk_20220321_143441423_11.jpg')" onclick="move_cli('20221660890434');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">서진성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>가슴</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>모발이식제모</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_61" class="list_save size24 listSave" onCLick="save_keep('cli', '61', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221659687347" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_933279_702_KakaoTalk_20220812_151651403.png')" onclick="move_cli('20221659687347');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아이리드성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_60" class="list_save size24 listSave" onCLick="save_keep('cli', '60', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221659329376" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_564094_792_YOON.jpg')" onclick="move_cli('20221659329376');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">윤동주성형외과의원<em>부산</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_58" class="list_save size24 listSave" onCLick="save_keep('cli', '58', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658216922" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_143496_284_dasipiumps.JPG')" onclick="move_cli('20221658216922');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">다시피움성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_50" class="list_save size24 listSave" onCLick="save_keep('cli', '50', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658216564" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_540173_919_bomvit.jpg')" onclick="move_cli('20221658216564');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">봄빛성형외과의원<em>인천경기</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_46" class="list_save size24 listSave" onCLick="save_keep('cli', '46', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658215915" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658215915');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">리트머스성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_44" class="list_save size24 listSave" onCLick="save_keep('cli', '44', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658215724" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_496923_343_팝성형외과_로고_(2).jpg')" onclick="move_cli('20221658215724');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">팝성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_43" class="list_save size24 listSave" onCLick="save_keep('cli', '43', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658215408" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_888069_779_220103_바비톡.jpg')" onclick="move_cli('20221658215408');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">진담성형외과의원<em>강남역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>지방이식</span>
+                                        <span>피부</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_41" class="list_save size24 listSave" onCLick="save_keep('cli', '41', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658215236" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658215236');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">러쉬성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_40" class="list_save size24 listSave" onCLick="save_keep('cli', '40', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658215104" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_461730_602_케이성형외과_가로형투명.png')" onclick="move_cli('20221658215104');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">케이성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>코</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>지방흡입</span>
+                                        <span>남자성형</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_39" class="list_save size24 listSave" onCLick="save_keep('cli', '39', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658214267" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658214267');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">아이컨텍성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_34" class="list_save size24 listSave" onCLick="save_keep('cli', '34', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658213217" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658213217');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">나나성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_33" class="list_save size24 listSave" onCLick="save_keep('cli', '33', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658212841" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658212841');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">크리스마스성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_30" class="list_save size24 listSave" onCLick="save_keep('cli', '30', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658212459" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658212459');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">코샵성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_29" class="list_save size24 listSave" onCLick="save_keep('cli', '29', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658211261" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658211261');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">청담라인성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_26" class="list_save size24 listSave" onCLick="save_keep('cli', '26', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658211083" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658211083');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">노상훈성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_25" class="list_save size24 listSave" onCLick="save_keep('cli', '25', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658210582" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/cp_447607_203_2X8A319.jpg')" onclick="move_cli('20221658210582');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">인클라인성형외과의원<em>압구정역</em></span>
+                  <span class="tag">
+                                                        <span>눈</span>
+                                        <span>필러보톡스쁘띠</span>
+                                        <span>리프팅</span>
+                                        <span>가슴</span>
+                                        <span>피부</span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_23" class="list_save size24 listSave" onCLick="save_keep('cli', '23', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658209850" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658209850');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">코코아이성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_19" class="list_save size24 listSave" onCLick="save_keep('cli', '19', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <div class="list_column">
+              <a href="/clinic/cli_view/20221658205525" class="list_item">
+                <div class="thumb_area">
+                                <span class="thumb" style="background-image:url('/img/clinic/')" onclick="move_cli('20221658205525');"></span>
+                              
+                
+                </div>
+                <div class="detail">
+                  <span class="tt">그날성형외과의원<em></em></span>
+                  <span class="tag">
+                                                        <span></span>
+                                      </span>
+                </div>
+              </a>
+                                        <button type="button" id="save_btn_8" class="list_save size24 listSave" onCLick="save_keep('cli', '8', 'a');"><span class="hidden">저장</span></button>
+                        </div>
+                          <!-- e:리스트반복 -->
+          </div>
+          <!-- e:병원찾기리스트 -->
+          <!-- e:병원찾기 -->
+        </div>
+      </div>
+    </section>
+
+<script>
+  $(function () {
+    
+  });
+</script>
+
+<script type="text/javascript">
+
+function move_cli(uid)
+{
+  location.href="/clinic/cli_view/"+uid;
+}
+
+function getLocation() {
+  if (navigator.geolocation) { // GPS를 지원하면
+    navigator.geolocation.getCurrentPosition(function(position) {
+      //alert('위도:'+position.coords.latitude + ' / 경도:' + position.coords.longitude);
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+
+      location.href = "/zoo/cli_list/"+lat+"/"+lng;
+
+    }, function(error) {
+      console.error(error);
+    }, {
+      enableHighAccuracy: false,
+      maximumAge: 0,
+      timeout: Infinity
+    });
+  } else {
+    alert('GPS를 지원하지 않습니다');
+  }
+}  
+</script>
+    <footer>
+      <div class="footer">
+        <ul>
+          <li class="footer_nav_01">
+            <a href="/main">
+              <span class="ico"></span>
+              <span>HOME</span>
+            </a>
+          </li>
+          <li class="footer_nav_02 current">
+            <a href="/clinic">
+              <span class="ico"></span>
+              <span>DOCTOR</span>
+            </a>
+          </li>
+          <li class="footer_nav_03">
+            <a href="/event">
+              <span class="ico"></span>
+              <span>EVENT</span>
+            </a>
+          </li>
+          <li class="footer_nav_04">
+            <a href="/board">
+              <span class="ico"></span>
+              <span>TALK</span>
+            </a>
+          </li>
+          <li class="footer_nav_05">
+            <a href="/review">
+              <span class="ico"></span>
+              <span>REVIEW</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+<script type="text/javascript">
+  function save_keep(cat, no, type)
+  {
+    var uid = 'guest';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_keep_proc",
+      data: {uid:uid,cat:cat,no:no,type:type}, // a , d
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        if(result.memo == "보관함에서 제거 하였습니다."){
+          $("#save_btn_"+no).removeClass("active");
+        }else{
+            $("#save_btn_"+no).addClass("active");
+        }
+      },
+      error : function(result){
+        //alert('Error! - USK');
+      }
+    });    
+  }
+
+  function save_good(cat, no, type)
+  {
+
+    var cnt =$('#v_good_'+no).text();
+
+    var uid = 'guest';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_good_proc",
+      data: {uid:uid,cat:cat,no:no,type:type},
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        /*
+        if(type == "a"){
+          num = parseInt(cnt)+1;
+          $('#v_good_'+no).text(num);
+        } else {
+          num = parseInt(cnt)-1;
+          $('#v_good_'+no).text(num);
+        }
+        */
+      },
+      error : function(result){
+        alert('Error! - UBG');
+      }
+    });
+  }  
+
+   function reply_police(mid)
+   {
+        popupModule.popupShow('.reportLayer_reply');
+        $("#police_id").val(mid);
+   }
+
+   function go_login_page()
+   {
+		location.href="/member/login";
+   }
+
+   function go_auth()
+   {
+        location.href="/member/user_auth_page";
+        return false;
+   }
+</script>
+<script>
+    document.addEventListener('scroll', function() {
+        var currentScrollValue = document.documentElement.scrollTop;
+        console.log('currentScrollValue is ' + currentScrollValue);
+    });
+</script>
+</div>
+
+<div class='error' style='display:none'><span id="m_memo"></span></div>
+<style type="text/css">
+.error {
+    width: 250px;height: 20px;height:auto;position: fixed;left: 50%;
+    margin-left:-125px;bottom: 100px;z-index: 9999;background-color: #383838;
+    color: #F0F0F0;font-family: Calibri;font-size: 15px;padding: 10px;
+    text-align:center;border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-723C58EHYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-723C58EHYQ');
+</script>
+
+</body>
+</html>
