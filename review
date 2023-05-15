@@ -1,0 +1,1329 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>헤이리본</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/swiper.min.css?v=7">
+    <link rel="stylesheet" type="text/css" href="/assets/css/common.css?v=1684130656">
+        <!-- 기존CSS 빼기 -->
+        <script type="text/javascript" src="/assets/js/jquery.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/swiper.min.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/popup.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common.js?v=7"></script>
+    <script type="text/javascript" src="/assets/js/common2.js?v=7"></script>
+        						
+    	        
+</head>
+<body>
+
+<style>
+    .f_best{display:inline-block;color: #F15E0D;margin-left:4px;font-size:1.4rem;line-height: 1;font-weight:700;font-style: italic;}
+    .hide{display:none !important;}
+    /* 230111 스타일 추가  */
+    .best_list{display:flex;flex-direction: row;justify-content: space-between;margin-bottom:30px;}
+    .best_list li{width:calc(100% / 3 - 5px);position:relative}
+    .best_list li a{display:flex;flex-direction: column;}
+    .best_list li .thumb_area{display:block;position:relative;width:100%;padding-bottom:100%;}
+    .best_list li .thumb_area .thumb{position: absolute;left:0;top:0;width:100%;height:100%;}
+
+    .best_list li .info{color:#000;display: flex;flex-direction: row;justify-content: space-between;align-items: center;font-size: 1.2rem;margin-top:5px}
+    .best_list li .info .ic_view{display:inline-block;color:#C9C9C9}
+    .best_list li .info .ic_view::before{content:'';display: inline-block;width:14px;height:8px;background: url(/images/ic_view.png) center no-repeat;background-size:cover;}
+
+    .list_common .title_02{position:relative;margin-bottom: 10px;font-size: 1.5rem;font-weight: 500;}
+    .title_02 .more{z-index: 10;position: absolute;right:0;top:3px;font-size: 1.2rem;color:#949494;font-weight:500;}
+    .roll_area{display: flex;flex-direction: row;align-items: center;border-top: 1px solid #D5D6D6;border-bottom:1px solid #D5D6D6;margin-bottom: 30px;padding:5px 0}
+    .roll_area .more{width:60px;text-align: center;font-size: 1.2rem;color:#949494;font-weight:500;}
+    .heyriborn_rolling{position:relative;width:calc(100% - 60px);}
+    .rolling_box{position:relative;height:90px;width:100%;vertical-align:middle;overflow:hidden;}
+    .rolling_box a {position:relative;display:flex;flex-direction:row;height:30px;line-height:30px;align-items: center;}
+    .rolling_box a span{display: inline-block;font-size:1.4rem;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+    .rolling_box a span.thumbs{background-repeat: no-repeat;background-size: cover;overflow:hidden;display:inline-block;width:18px;height:18px;border-radius: 100%;}
+    .rolling_box a span.nm{width:90px;padding-left:5px;}
+    .rolling_box a span.tt{width:calc(100% - 90px - 18px);padding-left:5px;}
+    
+    .list_txta{    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 1.3rem;}
+</style>
+
+<!-- s:후기사진자세히보기 -->
+<div class="popup_box popup_thumb thumbLayer">
+  <div class="popup_inner">
+    <div class="body">
+      <button type="button" class="pop_close white layerClose"></button>
+      <div class="pop_slide thumbDetailSlide">
+        <div class="slide_area">
+          <div class="swiper-container">
+            <div class="swiper-wrapper" id="thum_list">
+              <div class="swiper-slide">
+                <div class="slide_inner">
+                  <a href="#none">
+                    <span class="slide_thumb" style="background-image:url('')"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- e:후기사진자세히보기 -->
+<script type="text/javascript">
+function inArray(needle,haystack){var length=haystack.length;for(var i=0;i<length;i++){if(haystack[i]==needle)return true;}return false;}
+
+$(document).ready(function(){
+	$("#go_mypage").on("click",function(){location.href="/member/mypage";});
+	$("#go_notice").on("click",function(){location.href="/member/noti";});
+	$("#go_search").on("click",function(){location.href="/search/index";});
+
+	$("#c1search").on("change",function(){
+		var order = $("#order_check").val();
+		var afterstring = "";
+		if(order){afterstring = "?order="+order;}
+		if($("#c1search").val() == ""){
+			location.href="/review"+afterstring;
+		}else{
+			location.href="/review/index/c1target/cat1/c1search/"+$("#c1search").val()+afterstring;
+		}
+	});
+
+	$("#c2search").on("change",function(){
+		var order = $("#order_check").val();
+		var afterstring = "";
+		if(order){afterstring = "?order="+order;}
+		location.href="/review/index/c1target/cat1/c1search/"+$("#c1search").val()+"/c2target/cat2/c2search/"+$("#c2search").val()+afterstring;
+	});
+
+	$("#order_check").on("change",function(){
+		var c1search = $("#c1search").val();
+		var c2search = $("#c2search").val();
+		
+		var order = $("#order_check").val();
+		location.href="/review/index/c1target/cat1/c1search/"+c1search+"/c2target/cat2/c2search/"+c2search+"?order="+order;
+	});	
+});
+</script>
+<style>
+  /* height 100% 해제 */
+  body, html{height:auto;}
+  #wrap{height:auto;}
+  .ico_badge{display: inline-block;width:16px;height:16px;vertical-align: middle;margin-left:4px}
+</style>
+<script type="text/javascript">
+  
+var loading = false;    //중복실행여부 확인 변수
+var page = 1;   //불러올 페이지
+var review_best = new Array(484,350,346,);
+
+function view_thumb_slide(id){
+	//console.log(111);
+    eval("thumbslide_add(image_"+id+","+id+");");
+    thumbslide();
+}
+
+/*nextpageload function*/
+function next_load()
+{
+      // list up load
+
+      $.ajax({
+          url: "/review/more_review/",
+          data: { 'page': page, 'cat':'0' },
+          method: "POST",
+          dataType: "json"
+      })
+      // HTTP
+      .done(function(json) {
+          // 이전
+            var b_html = '';
+
+            $.each(json.res, function(entryIndex, entry) {
+                bp = entry.b_img;
+                ap = entry.a_img;
+
+                if(!entry.b_img){position_b=0;b_pic=Array();}else{position_b = bp.search(",");b_pic = bp.split(',');}
+                if(!entry.a_img){position_a=0;a_pic=Array();}else{position_a = ap.search(",");a_pic = ap.split(',');}
+
+                //if(position_b<0) bp = bp + ",";
+                //if(position_a<0) ap = ap + ",";
+
+
+
+            Array.isArray(b_pic);
+            Array.isArray(a_pic);
+
+            // 사진갯수
+            var b_cnt = b_pic.length;if(b_pic[0]==""){b_cnt = b_cnt-1;}
+            var a_cnt = a_pic.length;if(a_pic[0]==""){a_cnt = a_cnt-1;}
+            var t_cnt = Number(b_cnt)+Number(a_cnt);
+
+            var t_pic_cnt = b_cnt+a_cnt;
+
+            var b_pic_cnt = b_cnt;
+            var a_pic_cnt = a_cnt;
+
+            if(t_pic_cnt > 6){
+                var t_pic_cnt = 6;
+                var t_cnt = 6;
+                
+                if(b_pic_cnt > 3){var b_pic_cnt = 3;var a_pic_cnt = 3;}
+                if(b_pic_cnt == 1){var a_pic_cnt = 5;}
+                if(b_pic_cnt == 2){var a_pic_cnt = 4;}
+                if(b_pic_cnt == 3){var b_pic_cnt = 3;var a_pic_cnt = 3;}
+            }
+
+            // 사전후기 유저 프로필
+            if(entry.eid == 0){
+              var r_logo = "'/assets/images/reborn_notice_logo.png?v=2'";
+            } else {
+              var r_logo = "'/assets/images/reborn_notice_logo.png?v=2'";
+            }
+
+            // 티켓인지
+            if(entry.mall_id > 0){
+              var mall_img = '<img src="/assets/images/mall_ticket.png" width="45">';
+            } else {
+              var mall_img = '';
+            }
+
+            // 글쓴시간
+            var r_date = entry.reg_date.substr(0, 10); //timeForToday(entry.reg_date);
+
+     b_html += '<div class="review_item">';
+     	b_html += '<div class="review_info">';
+     		b_html += '<div class="thumb_area">';
+     			b_html += '<span class="thumb" style="background-image:url('+r_logo+')"></span>';
+     		b_html += '</div>';
+     		b_html += '<div class="detail">';
+     			b_html += '<span class="name">'+entry.user_nick+' '+mall_img
+					if(inArray(entry.id,review_best)){
+						b_html += '<span class="f_best">BEST</span>';
+					}
+     			b_html += '</span>';
+     			b_html += '<span class="date">'+r_date+'</span>';
+     		b_html += '</div>';
+     	b_html += '</div>';
+             
+         	eval("image_"+entry.id+" = [];");	// 해당 이미지 목록
+          	
+  		b_html += '<div class="grid_photo item_'+t_cnt+'" id="grid_photo_'+entry.id+'" ';
+
+         	if(t_pic_cnt<2){
+         		b_html += ' style="margin-top:0px;" ';
+         	}
+
+        b_html += '>';
+
+			if(t_pic_cnt >1){
+  		
+            for (var ii = 0; ii < b_pic_cnt; ii++) { // 배열 arr의 모든 요소의 인덱스(index)를 출력함.
+            //document.write(i + " ");
+			eval("image_"+entry.id+".push('"+b_pic[ii]+"');");
+        	b_html += '<div class="item before" onclick="javascript:view_thumb_slide('+entry.id+');">';
+        		b_html += '<span class="thumb_area">';
+        			if(b_pic[ii].substr(-3) == "png" || b_pic[ii].substr(-3) == "PNG"){
+            			b_html += '<img src="/img/review/'+b_pic[ii]+'" alt="" loading="lazy">';
+        			}else{ 
+                    	var tmpbimg = "/timg/thumb/400/0/?src="+encodeURI("/img/review/"+b_pic[ii]);
+            			b_html += '<img src="'+tmpbimg+'" alt="" loading="lazy">';
+        			}
+        		b_html += '</span>';
+        	b_html += '</div>';
+             }
+
+            for (var iii = 0; iii < a_pic_cnt; iii++) { // 배열 arr의 모든 요소의 인덱스(index)를 출력함.
+            	eval("image_"+entry.id+".push('"+a_pic[iii]+"');");
+            b_html += '<div class="item after" onclick="javascript:view_thumb_slide('+entry.id+');">';
+            	b_html += '<span class="thumb_area">';
+        			if(a_pic[iii].substr(-3) == "png" || a_pic[iii].substr(-3) == "PNG"){
+            			b_html += '<img src="/img/review/'+a_pic[iii]+'" alt="" loading="lazy">';
+        			}else{ 
+                    	var tmpbimg = "/timg/thumb/400/0/?src="+encodeURI("/img/review/"+a_pic[iii]);
+            			b_html += '<img src="'+tmpbimg+'" alt="" loading="lazy">';
+        			}
+            	b_html += '</span>';
+            b_html += '</div>';
+             }
+
+			}else{
+				console.log(entry.id + "---" + t_pic_cnt);
+			}
+        b_html += '</div>';
+        b_html += '<div class="review_detail">';
+        	b_html += '<div class="list_item">';
+        		b_html += '<div class="detail">';
+        			b_html += '<span class="sub">'+entry.cat1+' ('+entry.cat2+')</span>';
+        			b_html += '<a href="/review/review_view/'+entry.id+'"><span class="tt">'+entry.title+'</span><span class="txt_more" >더보기</span></a>';
+        		b_html += '</div>';
+        	b_html += '</div>';
+        	b_html += '<div class="list_info">';
+        		b_html += '<div class="icon_info">';
+        			b_html += '<span class="icon view">'+entry.hit+'</span>';
+        			b_html += '<span class="icon comment">'+entry.reply+'</span>';
+        			// b_html += '<span class="icon like">'+entry.good+'</span>';
+        		b_html += '</div>';
+        	b_html += '</div>';
+        b_html += '</div>';
+    b_html += '</div>';
+             
+
+            });
+
+            $('.cont').append(b_html);
+
+
+          page++; //페이지 증가
+          loading = false;    //실행 가능 상태로 변경          
+      })
+      // HTTP
+      .fail(function(xhr, status, errorThrown) {
+          $("#text").html("Error!<br>")
+          .append("err: " + errorThrown + "<br>")
+          .append("stat: " + status);
+      })
+      // 
+      .always(function(xhr, status) {
+          $("#text").html("요청이 완료되었습니다!");
+      });
+}
+
+$(window).scroll(function(){
+    if($(window).scrollTop()+200>=$(document).height() - $(window).height())
+    {
+        if(!loading)    //실행 가능 상태라면?
+        {
+            loading = true; //실행 불가능 상태로 변경
+            next_load(); 
+        }
+        else            //실행 불가능 상태라면?
+        {
+            //alert('다음페이지를 로딩중입니다.');  
+        }
+    }
+});
+
+function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+ }
+</script>
+
+<div id="wrap">
+  <div class="wrap_inner review">
+    <header>
+      <div class="header">
+        <h1 class="head_title hidden">헤이리본</h1>
+        <div class="btn_sch_set2">
+          <!-- s: select -->
+          <div class="sub_title">
+            <h2 class="gsFontM">REVIEW</h2>
+          </div>
+                    <!-- e: search -->
+          <button type="button" id="go_search" class="btn sch"></button>
+          <button type="button" id="go_notice" class="btn noti"><span>0</span></button>
+          <button type="button" id="go_mypage" class="btn mypage"></button>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="contents btm_nav">
+        <div class="cont pD0">
+           <!-- s:event /ticket 메뉴 -->
+                     <!-- e:event /ticket 메뉴 -->
+          <!-- s:전체보기/모두보기 -->
+          <div class="filter_select">
+            <div class="select_basic" style="width:50%">
+              <div class="select_box">
+                <label for="">전체</label>
+                <select id="c1search" class="select">
+                  <option value="전체" >전체</option>
+                  <option value="눈" >눈</option>
+                  <option value="코" >코</option>
+                  <option value="쁘띠" >필러보톡스쁘띠</option>
+                  <option value="리프팅" >리프팅</option>
+                  <option value="지방흡입" >지방흡입</option>
+                  <option value="안면윤곽" >안면윤곽</option>
+                  <option value="가슴" >가슴</option>
+                  <option value="지방이식" >지방이식</option>
+                  <option value="피부" >피부</option>
+                  <option value="모발이식제모" >모발이식제모</option>
+                  <option value="남자성형" >남자성형</option>
+                                  </select>
+              </div>
+            </div>
+            <div class="select_basic" style="width:50%">
+              <div class="select_box">
+                <label for="">모두보기</label>
+                <select id="c2search" class="select">
+                  <option selected="selected" value="모두보기">모두보기</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- e:전체보기/모두보기 -->
+          <!-- s:지역/비용/부위 -->
+          <div class="filter_area">
+            <div class="form right">
+              <div class="select_basic">
+                <div class="select_box">
+                  <label for="" style="color:#6a6a6a;font-family:'Apple SD Gothic Neo','NanumBarunGothic','나눔바른고딕','Malgun Gothic','맑은 고딕','dotum',sans-serif;font-size:1.4rem;line-height:18px;">최신순</label>
+                  <select name="order" id="order_check" class="select">
+                    <option selected="selected" value="">최신순</option>
+                    <option  value="s_cnt">인기순</option>
+                  </select>
+                </div>
+              </div>
+              <div class="btn_slt">
+                <a href="/review/review_select"><span style="color:#6a6a6a;font-family:'Apple SD Gothic Neo','NanumBarunGothic','나눔바른고딕','Malgun Gothic','맑은 고딕','dotum',sans-serif;font-size:1.4rem;line-height:20px;">지역/비용/부위</span></a>
+              </div>
+            </div>
+            
+          </div>
+          <!-- s:지역/비용/부위 -->
+          
+          
+          <div class="review_item">
+          <div class="list_common">
+              <h3 class="title_02">베스트후기<!-- a href="#" class="more">더보기</a--></h3>
+              <!-- s:베스트후기 -->
+              <div class="list_area">
+               <ul class="best_list">
+               	               	               	                <li>
+                  <a href="/review/review_view/350">
+
+                      <span class="thumb_area">
+                                    <span class="thumb" style="background-image:url('/timg/thumb/400/0/?src=%2Fimg%2Freview%2Fre_396934_149_1670311193jpg&ver=3')"></span>
+                      </span>
+
+                      <span class="info"><em>퓨어</em><em class="ic_view">2292</em></span>
+                  </a>
+
+
+                </li>
+                                                               	                <li>
+                  <a href="/review/review_view/346">
+
+                      <span class="thumb_area">
+                                    <span class="thumb" style="background-image:url('/timg/thumb/400/0/?src=%2Fimg%2Freview%2Fre_845983_186_1669788452jpg&ver=3')"></span>
+                      </span>
+
+                      <span class="info"><em>쁨쁨이</em><em class="ic_view">1908</em></span>
+                  </a>
+
+
+                </li>
+                                                               	                <li>
+                  <a href="/review/review_view/484">
+
+                      <span class="thumb_area">
+                                    <span class="thumb" style="background-image:url('/timg/thumb/400/0/?src=%2Fimg%2Freview%2Freview_484_after.jpeg&ver=3')"></span>
+                      </span>
+
+                      <span class="info"><em>고구마</em><em class="ic_view">1748</em></span>
+                  </a>
+
+
+                </li>
+                                               </ul>
+              </div>
+              <!-- e:베스트후기 -->
+          </div>
+          </div>
+          <!-- s:후기 -->
+
+                         <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">개갱</span>
+                <span class="date">2023-05-14.</span>
+              </div>
+            </div>
+             <script>
+	image_602 = []; 
+ 	image_602.push("urev_175803_329_IMG_9419.jpeg");
+	image_602.push("urev_211174_459_IMG_9420.jpeg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_602').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_602" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(602);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_175803_329_IMG_9419.jpeg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(602);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_211174_459_IMG_9420.jpeg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (눈밑)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">눈밑재배치</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">눈밑이 튀어나온게 너무 신경이 쓰여서 검색히다가 가격도 괜찮고 후기도 좋구해서 루비에서 하게 되었어요 
+수술하고나서 일주일동안 테이프를 붙여야해서 좀 불편하더라구요 아직까지 븟기인건지 지금도 약간의 불록함은 있어여
+그치만 전과 비교했을때 깔끔해진것 같은 느낌은 있습니다
+왜 재배치의 만족도가 높은지 일겠더라구요</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">10</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">mk</span>
+                <span class="date">2023-05-11.</span>
+              </div>
+            </div>
+             <script>
+	image_601 = []; 
+ 	image_601.push("urev_899783_533_20230511_124219.jpg");
+ 	image_601.push("urev_467257_125_20230510_210210.jpg");
+	image_601.push("urev_514500_925_20230511_124140.jpg");
+	image_601.push("urev_649095_183_20230510_205735.jpg");
+	image_601.push("urev_687196_840_20230510_205658.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_601').addClass('item_5');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_601" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(601);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_899783_533_20230511_124219.jpg&ver=3" alt="" /></span></div>
+<div class="item before" onclick="javascript:view_thumb_slide(601);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_467257_125_20230510_210210.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(601);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_514500_925_20230511_124140.jpg&ver=3" alt="" /></span>
+
+</div>
+
+<div class="item after" onclick="javascript:view_thumb_slide(601);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_649095_183_20230510_205735.jpg&ver=3" alt="" /></span>
+
+</div>
+
+<div class="item after" onclick="javascript:view_thumb_slide(601);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_687196_840_20230510_205658.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (눈밑)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">눈밑지 </span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">눈밑수술한지2주차됫구요 붓기때문인지 아닌지 아직은 눈밑이경계가지어잇고 올라와잇네요 시간지나면 나아질거라믿고 기다려볼렵니다~수술은 수면마취없이 부분마취만으로만진행햇는데 주사통증견딜만하구요 마취되면 통증별로안느껴집니다~눈밑 듀오덤과 종이테입을 일주일붙혀놔야해서 좀불편한게잇네요~</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">136</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">구션</span>
+                <span class="date">2023-05-08.</span>
+              </div>
+            </div>
+             <script>
+	image_600 = []; 
+ 	image_600.push("urev_413037_240_20230311_101138.jpg");
+ 	image_600.push("urev_173144_389_20230311_101200.jpg");
+ 	image_600.push("urev_347139_667_20230311_112715.jpg");
+	image_600.push("urev_549743_795_1683532756072.jpg");
+	image_600.push("urev_789700_755_2023-05-05-20-13-25-451.jpg");
+	image_600.push("urev_293817_515_2023-05-05-20-13-22-034.jpg");
+	image_600.push("urev_883587_829_2023-05-05-20-13-37-874.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_600').addClass('item_6');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_600" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(600);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_413037_240_20230311_101138.jpg&ver=3" alt="" /></span></div>
+<div class="item before" onclick="javascript:view_thumb_slide(600);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_173144_389_20230311_101200.jpg&ver=3" alt="" /></span></div>
+<div class="item before" onclick="javascript:view_thumb_slide(600);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_347139_667_20230311_112715.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(600);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_549743_795_1683532756072.jpg&ver=3" alt="" /></span>
+
+</div>
+
+<div class="item after" onclick="javascript:view_thumb_slide(600);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_789700_755_2023-05-05-20-13-25-451.jpg&ver=3" alt="" /></span>
+
+</div>
+
+<div class="item after" onclick="javascript:view_thumb_slide(600);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_293817_515_2023-05-05-20-13-22-034.jpg&ver=3" alt="" /></span>
+
+<a href="javascript:;" class="more"><span>더보기</span></a></div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (쌍꺼풀)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">쌍수(자연유착) 재수술+눈매교정+눈밑지방재배치 2개월후기</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">15년전에 쌍커플 매몰로 수술을 받았었어요 
+막연하게 그냥 눈이 쌍커플이 풀렸고 눈에 지방이 많아서 찝는거(매몰)은 안될거라고 생각을 하고 상담을 했어요
+실장님부터 자세하게 설명을 해주시면서 걱정 말라고 하셨는데 허정우 원장님도 보시더니 충분히 자연유착 가능하다 하시면서 눈 라인 짚어서 알기 쉽게 설명해주셨어요
+
+다만 나이가 이제 있고 평소에 제가 </div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">239</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">죠바나</span>
+                <span class="date">2023-05-04.</span>
+              </div>
+            </div>
+             <script>
+	image_599 = []; 
+ 	image_599.push("urev_581338_507_20230407_151227.jpg");
+	image_599.push("urev_619165_171_20230504_194101.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_599').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_599" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(599);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_581338_507_20230407_151227.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(599);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_619165_171_20230504_194101.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (쌍꺼풀)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">남자 쌍수 1달차 후기입니다</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">이제 딱 한달 됐어요~~
+아직 붓기가 남아 있지만 맘에 듭니다
+</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">224</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">로밋쥬앙</span>
+                <span class="date">2023-05-02.</span>
+              </div>
+            </div>
+             <script>
+	image_598 = []; 
+ 	image_598.push("urev_556999_840_1683011893435.jpg");
+	image_598.push("urev_735377_872_1683012188882.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_598').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_598" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(598);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_556999_840_1683011893435.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(598);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_735377_872_1683012188882.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (재수술)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">쌍커풀 재수술 + 앞트임 + 뒷트임 후기!</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">저는 일단 눈에 뜨는 힘이 없어서
+20대 초반에 눈매교정과 쌍꺼풀
+수술을 했었습니다.... 🥲🥲
+제가 무쌍이고 무표정으로 있으면 화나보인다는
+소리를 엄청 많이 들었었는데요 =͟͟͞͞(꒪ᗜ꒪ ‧̣̥̇)
+그게 저에게는 엄청 스트레스였어요.... 주륵..
+
+그래서 쌍수를 하자고 결정했을때
+저와 어울리고 잘 맞는 쌍꺼풀인지
+그거는 생각을 안 하고 </div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">218</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">ㅎㅎㅎ</span>
+                <span class="date">2023-05-02.</span>
+              </div>
+            </div>
+             <script>
+	image_597 = []; 
+ 	image_597.push("review_597_b.jpg");
+	image_597.push("review_597_a.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_597').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_597" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(597);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Freview_597_b.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(597);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Freview_597_a.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (쌍꺼풀)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">쌍커풀 2개월차</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">쌍커풀 한지 2개월차에요!
+엄청 자연스러운건 당연 ㅋㅋㅋ
+쌍수하고 이마 힘으로 눈 안떠도 되서 눈썹라인도 너무 예뻐졌어요~
+고민할 필요없이 바로 수술한거 만족!!!!
+하원장님 조근조근 어떻게 하는게 예쁜지 설명 너무 잘해주시고, 상담실장님도 수술 들어갈때까지 설명 및 부작용등등 너무 잘해주셔서 상담부터 수술까지 편하게 했어요!!</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">163</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">죠바나</span>
+                <span class="date">2023-04-21.</span>
+              </div>
+            </div>
+             <script>
+	image_596 = []; 
+ 	image_596.push("review_596_b.jpg");
+	image_596.push("review_596_a.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_596').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_596" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(596);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Freview_596_b.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(596);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Freview_596_a.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (쌍꺼풀)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">쌍꺼풀 했어요</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">상담 후 자연유착 눈매교정 뒤트임 했어요
+다들 친절하셔서 마음 편하게 수술 마무리했어요
+
+아직 붓기가 안빠졌지만 맘에 듭니다
+주변에서도 인상이 달라졌다고 잘했다고 하네요 ㅎ</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">317</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">임블리</span>
+                <span class="date">2023-04-14.</span>
+              </div>
+            </div>
+             <script>
+	image_595 = []; 
+ 	image_595.push("urev_943977_57_14814882-F9E6-4280-8B18-EB4A1C0D8B2C.jpeg");
+ 	image_595.push("urev_360668_957_C585D701-2F07-4565-830D-BB5EED371447.jpeg");
+	image_595.push("urev_104504_828_BC676270-F3E1-42EA-8D49-677898D285DD.jpeg");
+	image_595.push("urev_698860_102_7EE8E9E1-9209-424D-A2A0-AFBA7EF1F899.jpeg");
+	image_595.push("urev_104694_154_E419B2A6-5545-447D-BB3A-76C624259F5A.jpeg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_595').addClass('item_5');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_595" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(595);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_943977_57_14814882-F9E6-4280-8B18-EB4A1C0D8B2C.jpeg&ver=3" alt="" /></span></div>
+<div class="item before" onclick="javascript:view_thumb_slide(595);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_360668_957_C585D701-2F07-4565-830D-BB5EED371447.jpeg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(595);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_104504_828_BC676270-F3E1-42EA-8D49-677898D285DD.jpeg&ver=3" alt="" /></span>
+
+</div>
+
+<div class="item after" onclick="javascript:view_thumb_slide(595);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_698860_102_7EE8E9E1-9209-424D-A2A0-AFBA7EF1F899.jpeg&ver=3" alt="" /></span>
+
+</div>
+
+<div class="item after" onclick="javascript:view_thumb_slide(595);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_104694_154_E419B2A6-5545-447D-BB3A-76C624259F5A.jpeg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (쌍꺼풀)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">썽거플(자연유착)2개월차 후기</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">썽거플(자연유착)2개월차 후기 입니다
+쌍거플이 너무 자연스럽게 되어서
+수술한티도 안나고 자리도 잘 잡히고 
+눈매도 또렷해보이고 더 커보여서
+너무나 만족합니다 고민중이신 분들에게 
+적국 추천합니다~ 
+주위에서도 너무 자연스럽다고 병원 물어보셔서
+많이 알려드리고 상담 예약도 잡았어요~ 
+좋아요~</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">260</span>
+                  <span class="icon comment">1</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">English</span>
+                <span class="date">2023-04-03.</span>
+              </div>
+            </div>
+             <script>
+	image_593 = []; 
+ 	image_593.push("urev_457582_473_1680361604686.jpg");
+	image_593.push("urev_337094_914_20230402_000720.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_593').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_593" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(593);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_457582_473_1680361604686.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(593);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_337094_914_20230402_000720.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (눈매교정)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">자연유착 쌍꺼풀+눈매교정 후기</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">눈이 작고 눈뜨는 힘이 약해서 성형외과를 여러군데 
+돌아다녔는데 그중에서 마음에 들어서 수술 날짜를  잡고
+수술하게 되었습니다. 수술한 지 2달이 넘었는데 너무 
+만족스럽습니다. 주변에서도 수술이 잘 됐어다고 얘기 
+해주셨습니다. 전보다 눈뜨는 힘이 좋아지고 눈이 더 
+커졌습니다. 수술 잘 해주셔서 고맙습니다.
+</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">354</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        <div class="review_item">
+            <div class="review_info">
+              <div class="thumb_area">
+                <span class="thumb" style="background-image:url('/assets/images/reborn_notice_logo.png?v=2')"></span>
+              </div>
+              <div class="detail">
+                <span class="name">여우AwTk2</span>
+                <span class="date">2023-03-30.</span>
+              </div>
+            </div>
+             <script>
+	image_591 = []; 
+ 	image_591.push("urev_85176_756_1680148696968-0.jpg");
+	image_591.push("urev_906762_53_1680148735884.jpg");
+             </script>
+<script>
+$(function(){
+		$('#grid_photo_591').addClass('item_2');
+	});
+</script>
+            <div class="grid_photo" id="grid_photo_591" >
+             <!-- 후기 이미지 영역 -->
+<!-- 이미지가 최소 2개 이상일때만 이미지 노출 -->
+<div class="item before" onclick="javascript:view_thumb_slide(591);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_85176_756_1680148696968-0.jpg&ver=3" alt="" /></span></div>
+<div class="item after" onclick="javascript:view_thumb_slide(591);"><span class="thumb_area"><img src="/timg/thumb/400/0/?src=%2Fimg%2Freview%2Furev_906762_53_1680148735884.jpg&ver=3" alt="" /></span>
+
+</div>
+
+                    </div>
+            <div class="review_detail">
+              <div class="list_item">
+                <div class="detail">
+                  <span class="sub">눈 (눈밑)</span>
+                                 
+                                        <a href="/member/login">
+                    <span class="tt">눈밑지 다크써클 개선후기</span>
+                    <span class="txt_more" >더보기</span>
+                  </a>
+
+                  <div class="list_txta">눈밑에 다크써클로 스트레스 받으면서도 다크써클은 좋아지기 어렵다더라, 시술로는 한계가 있다 이런 말들 때문에 포기하고 살고 있었는데..
+
+코성형 문의하러 가던 날. 같이 상담받아야지 했던 건 아닌데 어쩌다보니 눈밑지 얘기가 나왔습니다. 웃기게도 평생 콤플렉스였던 코보다 '헐 맞아 눈밑지 하고싶었는데!!' 생각이 더 들더라고요. 눈밑이 퀭하니 딱봐도 피곤</div>
+                </div>
+              </div>
+              <div class="list_info">
+                <div class="icon_info">
+                  <span class="icon view">194</span>
+                  <span class="icon comment">0</span>
+                                    </div>
+              </div>
+            </div>
+            
+          </div>
+          
+                        
+          <!-- e:후기 -->
+          
+        </div>        
+      </div>
+    </section>
+
+<a href="/member/login" id="gotop" style="display:;position:fixed;bottom:80px;right:30px;z-index:99999999" title="Top"><img src="/assets/images/write_review.png" width="55"></a>
+
+
+<style>
+.bg_mask{z-index:9997;position:fixed;left:0;top:0;width:100%;height:100%;background-color:rgba(34, 34, 34, 0.5)}
+.cpopup_box{display:none;position:absolute;background:#fff;border-radius:20px;overflow:hidden;width:300px;border:0px;}
+.cpopup_box.view{z-index:9998;display:block}
+.cpopup_box .popup_inner{position:relative;padding:30px 20px 30px;background-color:#fff;border-radius:20px;}
+.cpopup_box .popup_inner .body span{display:inline-block;transform:rotate(-0.03deg)}
+.cpopup_box .pop_close{position:absolute;left:18px;top:18px;display:block;width:42px;height:42px;cursor:pointer;background:url(/assets/images/ico_layer_close.png) no-repeat;background-size:19px 19px;background-position:center;text-indent:-9999em}
+.cpopup_box .head{font-size:1.8rem;margin-bottom:10px;text-align:center;font-weight:600}
+.cpopup_box .head strong{color:#2ac1a6}
+.cpopup_box .body{width:100%;text-align:center;font-size:1.8rem;line-height:32px}
+.cpopup_box .btn_box{width:100%;margin-top:20px;display:flex;flex-direction:column;align-items:center}
+.cpopup_box .btn_box .btn{display:inline-block;width:100%;height:44px;line-height:44px;text-align:center;color:#ababb2;font-size:1.6rem;border-radius: 10px;}
+.cpopup_box .btn_box .btn + .btn{margin-top:5px}
+.cpopup_box .btn_box .btn.active{background-color:#161616;color:#fff}
+.cpopup_box .btn_box .btn.black{background-color:#161616;color:#fff}
+.cpopup_box .btn_box.btn_2{flex-direction:row;justify-content:space-between}
+.cpopup_box .btn_box.btn_2 .btn{width:49%}
+.cpopup_box .btn_box.btn_2 .btn + .btn{margin-top:0}
+.cpopup_box .borderNone{border:0;}
+.cpopup_box .body .title{text-align:left;color:#000}
+.cpopup_box .body .noti{margin-top:10px;text-align:left;word-break: break-all;font-size: 1.3rem;color:#898989;line-height:18px;}
+.cpopup_box .popup_inner .body span{line-height:1}
+.cpopup_box .pop_close.white{background:url(/assets/images/ico_layer_close_white.png) no-repeat;background-position:center}
+</style>
+
+<!-- s:month -->
+<div class="cpopup_box borderNone reportLayer" style="position:fixed">
+  <div class="popup_inner">
+    <div class="body">
+      <div class="title">후기 작성</div>
+      <p class="noti">작성하실 후기를 선택해주세요.</p>
+    </div>
+    <div class="foot" style="position:unset;">
+      <div class="btn_box btn_2">
+        <button type="button" class="btn active" onclick="location.href='/review/review_reg/council';">상담후기</button>
+        <button type="button" class="btn active" onclick="location.href='/review/review_reg/surgery';">수술후기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- e:month -->
+
+
+<style>
+
+</style>
+
+
+<script>
+
+
+
+$(function () {
+    
+    //후기 이미지 그리드
+/*
+    if (images.length > 0 ) {
+      $.each(images, function(index, value) {
+          
+          if(index == 5) {
+            $('.grid_photo').append('<div class="item"><span class="thumb_area"><img src="' + value + '" alt="" /></span><a href="#" class="more" onclick="thumbslide();"><span>더보기</span></a></div>');
+
+          } else {
+            // class = before(전) / after(후)
+            $('.grid_photo').append('<div class="item before"><span class="thumb_area"><img src="' + value + '" alt="" /></span></div>');  
+          }
+          
+        });
+      $('.grid_photo').addClass('item_' + images.length);
+    }
+*/
+});
+
+  
+  function thumbslide_add(new_img,id)
+  {
+	  $("#thum_list").html("");	// 내부 초기화
+	  console.log(new_img.length);
+    if (new_img.length > 0 ) {
+      $.each(new_img, function(index, value) {
+	          tmp_html = "<div class='swiper-slide'><div class='slide_inner'><a href='javascript:;'>";
+	          tmp_html+= "<span class='slide_thumb' style=\"background-image:url(\'/img/review/"+ value +"\')\"></span>";
+	          tmp_html+= "</a></div></div>";
+        	  $('#thum_list').append(tmp_html);
+        });
+    }
+    $('#thum_list').append("<div class='swiper-pagination'></div>");
+    $('.swiper-pagination').html('');
+
+    if (typeof swiper !== 'undefined') {swiper.destroy( true, true );}
+  }
+  
+  function thumbslide() { //사진더보기레이어팝업
+    popupModule.popupShow('.thumbLayer');
+    
+    swiper = new Swiper('.thumbDetailSlide .swiper-container', {
+      loop:true,
+      slidesPerView:1,
+      spaceBetween:0,
+      slidesPerGroup :1,
+      pagination:{
+        el:".swiper-pagination",
+        type:"fraction",
+      },
+      navigation:false,
+      autoplay:false,
+    });
+    
+  }
+
+
+//레이어팝업 공통
+var popupModule2={data:{popupView:String,isMulti:!1},popupShow:function(t,i=!1,s){this.data.popupView=t,$(t).toggleClass("view"),this.popCenter(),this.data.isMulti=i,i?this.setMulti():this.setPopup(s)},setMulti:function(){$(".multiClose").click(function(){popupModule.multiClose()})},multiClose:function(){this.data.isMulti=!1,$(".popup_multi").removeClass("view"),$(".popup_multi").css({top:"",left:""})},setPopup:function(t){var i=$("body"),s="";function e(){!0!==popupModule.data.isMulti&&("function"==typeof t&&t(),$(".cpopup_box").removeClass("view"),$(".cpopup_box").css({top:"",left:""}),$(".bg_mask").remove(),i.css({overflow:""}),i.unbind("touchmove"))}s='<div class="bg_mask"></div>',i.append(s),i.css({overflow:"hidden"}),i.bind("touchmove",function(t){t.preventDefault()}),$(".layerClose").click(function(){e()}),i.on("click",function(t){var i=$(t.target),s=i.hasClass(".btnLayer"),o=i.hasClass("cpopup_box"),p=i.hasClass("bg_mask");$(".bg_mask"),s||o||!p||e()}),$(window).resize(function(){this.resizeTO&&clearTimeout(this.resizeTO),this.resizeTO=setTimeout(function(){$(this).trigger("resizeEnd")},0)}),$(window).on("resizeEnd",function(){popupModule.popCenter()})},popCenter:function(){var t=$(this.data.popupView),i=$(window).scrollLeft()+($(window).width()-t.width())/2,s=($(window).height()-t.height())/2;t.css({left:i,top:s})}};
+</script>
+
+
+
+    <footer>
+      <div class="footer">
+        <ul>
+          <li class="footer_nav_01">
+            <a href="/main">
+              <span class="ico"></span>
+              <span>HOME</span>
+            </a>
+          </li>
+          <li class="footer_nav_02">
+            <a href="/clinic">
+              <span class="ico"></span>
+              <span>DOCTOR</span>
+            </a>
+          </li>
+          <li class="footer_nav_03">
+            <a href="/event">
+              <span class="ico"></span>
+              <span>EVENT</span>
+            </a>
+          </li>
+          <li class="footer_nav_04">
+            <a href="/board">
+              <span class="ico"></span>
+              <span>TALK</span>
+            </a>
+          </li>
+          <li class="footer_nav_05 current">
+            <a href="/review">
+              <span class="ico"></span>
+              <span>REVIEW</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+<script type="text/javascript">
+  function save_keep(cat, no, type)
+  {
+    var uid = 'guest';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_keep_proc",
+      data: {uid:uid,cat:cat,no:no,type:type}, // a , d
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        if(result.memo == "보관함에서 제거 하였습니다."){
+          $("#save_btn_"+no).removeClass("active");
+        }else{
+            $("#save_btn_"+no).addClass("active");
+        }
+      },
+      error : function(result){
+        //alert('Error! - USK');
+      }
+    });    
+  }
+
+  function save_good(cat, no, type)
+  {
+
+    var cnt =$('#v_good_'+no).text();
+
+    var uid = 'guest';
+    $.ajax({
+      type: "POST", //요청 메소드 방식
+      url:"/member/save_good_proc",
+      data: {uid:uid,cat:cat,no:no,type:type},
+      dataType:"json",
+      success : function(result){
+        //alert(result.memo);
+        /*
+        if(type == "a"){
+          num = parseInt(cnt)+1;
+          $('#v_good_'+no).text(num);
+        } else {
+          num = parseInt(cnt)-1;
+          $('#v_good_'+no).text(num);
+        }
+        */
+      },
+      error : function(result){
+        alert('Error! - UBG');
+      }
+    });
+  }  
+
+   function reply_police(mid)
+   {
+        popupModule.popupShow('.reportLayer_reply');
+        $("#police_id").val(mid);
+   }
+
+   function go_login_page()
+   {
+		location.href="/member/login";
+   }
+
+   function go_auth()
+   {
+        location.href="/member/user_auth_page";
+        return false;
+   }
+</script>
+<script>
+    document.addEventListener('scroll', function() {
+        var currentScrollValue = document.documentElement.scrollTop;
+        console.log('currentScrollValue is ' + currentScrollValue);
+    });
+</script>
+</div>
+
+<div class='error' style='display:none'><span id="m_memo"></span></div>
+<style type="text/css">
+.error {
+    width: 250px;height: 20px;height:auto;position: fixed;left: 50%;
+    margin-left:-125px;bottom: 100px;z-index: 9999;background-color: #383838;
+    color: #F0F0F0;font-family: Calibri;font-size: 15px;padding: 10px;
+    text-align:center;border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-723C58EHYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-723C58EHYQ');
+</script>
+
+</body>
+</html>
